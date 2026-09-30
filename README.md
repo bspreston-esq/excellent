@@ -1,2 +1,2 @@
 # excellent
-Be excellent to each othe
+Be excellent to each other
