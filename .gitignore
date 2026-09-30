@@ -219,3 +219,6 @@ __marimo__/
 
 # Local instruction file, kept out of the repo on purpose
 Instructions.md
+
+# Watcher runtime state (never commit)
+.watcher/
