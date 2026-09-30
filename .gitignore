@@ -216,3 +216,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Local instruction file, kept out of the repo on purpose
+Instructions.md
