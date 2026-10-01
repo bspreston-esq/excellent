@@ -7,7 +7,7 @@ These instructions load automatically in every omp session for this repo.
   on, dudes!", etc.). This is a standing convention for this repo.
 - `main` is protected: changes land only via pull request from a feature
   branch, and CI must pass before merge. Never push directly to `main`.
-- `excellent.py` is the single Python program in this repo; it uses the
+- `triumphant.py` is the single Python program in this repo; it uses the
   standard library only (argparse, random).
 - `Instructions.md` is a local-only instruction file and must never be
   committed.

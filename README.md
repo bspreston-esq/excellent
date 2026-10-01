@@ -1,26 +1,26 @@
-# excellent
+# triumphant
 
 Whoa! This is the most excellent little program in the whole Western
-Civilization. Fire up `excellent.py` and it doles out a righteous quote from
+Civilization. Fire up `triumphant.py` and it doles out a righteous quote from
 the dudes themselves — Bill and Ted, no less!
 
 ## Party on, man: usage
 
 Grab a bodacious quote, dude:
 
-    python excellent.py
+    python triumphant.py
 
 Strange things are afoot at the Circle-K? Play it safe, dudes:
 
-    python excellent.py --careful
+    python triumphant.py --careful
 
 Things went totally heinous? Express yourself:
 
-    python excellent.py --bogus
+    python triumphant.py --bogus
 
 Need a hand, man? The program's got your back:
 
-    python excellent.py --help
+    python triumphant.py --help
 
 And if you toss it some bogus, non-triumphant argument, it'll school you with
 a usage message. Most impressive.
@@ -34,6 +34,19 @@ Be excellent to each other:
 - `--bogus` picks from the most non-triumphant set.
 - `--help` shows the usage, and invalid flags get the boot (exit code and
   all, man).
+
+## Party on from PyPI, dude
+
+Whoa, the whole quote machine is on PyPI now as **`triumphant`** — most
+triumphant, dudes:
+
+    pip install triumphant
+
+Then call up a righteous quote from anywhere, dude:
+
+    triumphant             # a righteous quote
+    triumphant --careful   # strange things are afoot at the Circle-K
+    triumphant --bogus     # things are most heinously failing
 
 ## Development, dudes
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""excellent.py — a totally excellent quote machine, dude!
+"""triumphant.py — a totally excellent quote machine, dude!
 
 Serves up righteous quotes from Bill and Ted's Excellent Adventure.
 Party on!
@@ -35,7 +35,7 @@ BOGUS_QUOTES = [
 
 def build_parser():
     parser = argparse.ArgumentParser(
-        prog="excellent.py",
+        prog="triumphant.py",
         description="Prints a most excellent quote. Be excellent to each other!",
     )
     mode = parser.add_mutually_exclusive_group()

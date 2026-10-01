@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "triumphant"
+version = "0.1.0"
+description = "A most excellent Bill and Ted quote machine. Party on, dudes!"
+readme = "README.md"
+requires-python = ">=3.8"
+license = "GPL-3.0-only"
+license-files = ["LICENSE"]
+authors = [{ name = "bspreston-esq" }]
+keywords = ["bill-and-ted", "quotes", "excellent", "triumphant"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "Natural Language :: English",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/bspreston-esq/triumphant"
+Repository = "https://github.com/bspreston-esq/triumphant"
+Issues = "https://github.com/bspreston-esq/triumphant/issues"
+
+[project.scripts]
+triumphant = "triumphant:main"
+
+[tool.setuptools]
+py-modules = ["triumphant"]
