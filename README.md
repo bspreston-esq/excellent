@@ -48,6 +48,17 @@ Then call up a righteous quote from anywhere, dude:
     triumphant --careful   # strange things are afoot at the Circle-K
     triumphant --bogus     # things are most heinously failing
 
+## RPM party, dudes
+
+The same righteous quotes ride as an RPM, built for Fedora by COPR. Enable
+the repo and install, man:
+
+    dnf copr enable bspreston-esq/triumphant
+    dnf install triumphant
+
+Then `triumphant` is a bodacious command right in `/usr/bin` — most
+triumphant, no pip required. Party on!
+
 ## Development, dudes
 
 The main branch is a most protected zone — no direct commits, no way, man.
