@@ -26,7 +26,12 @@ jobs:
 
       - name: Read merge commit message
         id: msg
-        run: echo "message=$(git log -1 --format=%B)" >> "$GITHUB_OUTPUT"
+        run: |
+          {
+            echo "message<<EOF"
+            git log -1 --format=%B
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
 
       - name: Detect release mode
         id: detect
@@ -119,12 +124,15 @@ jobs:
           git push origin "v$VER"
 
       - name: Trigger COPR build
-        if: ${{ secrets.COPR_API_TOKEN != '' && vars.COPR_PROJECT != '' }}
         env:
           COPR_LOGIN: ${{ secrets.COPR_LOGIN }}
           COPR_TOKEN: ${{ secrets.COPR_API_TOKEN }}
           COPR_PROJECT: ${{ vars.COPR_PROJECT }}
         run: |
+          if [ -z "$COPR_TOKEN" ]; then
+            echo "COPR not configured (no COPR_API_TOKEN secret); skipping"
+            exit 0
+          fi
           python -m pip install -q copr-cli
           mkdir -p "$HOME/.config"
           cat > "$HOME/.config/copr" <<EOF
