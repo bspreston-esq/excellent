@@ -141,6 +141,7 @@ jobs:
           [copr-cli]
           login = $COPR_LOGIN
           token = $COPR_TOKEN
+          username = ${COPR_PROJECT%%/*}
           copr_url = https://copr.fedorainfracloud.org
           EOF
-          copr-cli buildpkg "$COPR_PROJECT" triumphant
+          copr-cli build-package "$COPR_PROJECT" --name triumphant
