@@ -1,7 +1,7 @@
 %global srcname triumphant
 
 Name:           triumphant
-Version:        0.1.2
+Version: 0.1.3
 Release:        1%{?dist}
 Summary:        A most excellent Bill and Ted quote machine
 
