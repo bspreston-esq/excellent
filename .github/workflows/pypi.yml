@@ -105,6 +105,7 @@ jobs:
           gh pr merge "$PR" --merge
         env:
           MESSAGE: ${{ steps.msg.outputs.message }}
+          GH_TOKEN: ${{ secrets.RELEASE_PAT }}
 
   publish:
     needs: release
