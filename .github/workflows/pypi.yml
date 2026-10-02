@@ -125,6 +125,15 @@ jobs:
           git tag -a "v$VER" -m "triumphant v$VER"
           git push origin "v$VER"
 
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VER=$(grep -oP '^version = "\K[0-9.]+' pyproject.toml)
+          if ! gh release view "v$VER" >/dev/null 2>&1; then
+            gh release create "v$VER" --title "triumphant v$VER" --generate-notes
+          fi
+
       - name: Trigger COPR build
         env:
           COPR_LOGIN: ${{ secrets.COPR_LOGIN }}
