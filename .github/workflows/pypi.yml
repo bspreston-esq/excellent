@@ -89,9 +89,10 @@ jobs:
           git push -u origin "$BRANCH"
           gh pr create --base main --head "$BRANCH" --title "chore(release): v$NEW" --body "Automated version bump to $NEW. [skip release]"
           PR=$(gh pr view "$BRANCH" --json number -q .number)
+          START=$(date -u +%Y-%m-%dT%H:%M:%SZ)
           CI_RUN=""
           for i in $(seq 1 60); do
-            CI_RUN=$(gh run list --branch "$BRANCH" --event pull_request --limit 1 --json databaseId -q '.[0].databaseId // empty' 2>/dev/null || true)
+            CI_RUN=$(gh run list --branch "$BRANCH" --event pull_request --limit 10 --json databaseId,createdAt 2>/dev/null | jq -r --arg start "$START" '[.[] | select(.createdAt >= $start)] | .[0].databaseId // empty' || true)
             if [ -n "$CI_RUN" ]; then
               break
             fi
