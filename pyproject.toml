@@ -28,4 +28,10 @@ Issues = "https://github.com/bspreston-esq/triumphant/issues"
 triumphant = "triumphant:main"
 
 [tool.setuptools]
-py-modules = ["triumphant"]
+packages = ["triumphant"]
+
+[tool.setuptools.package-data]
+triumphant = [
+    "collections/default/*",
+    "collections/austin-powers/*",
+]
