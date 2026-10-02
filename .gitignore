@@ -31,6 +31,8 @@ MANIFEST
 #   before PyInstaller builds the exe, so as to inject date/other infos into it.
 *.manifest
 *.spec
+# RPM spec files are tracked (COPR builds straight from the repo)
+!triumphant.spec
 
 # Installer logs
 pip-log.txt
