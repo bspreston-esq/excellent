@@ -167,4 +167,4 @@ jobs:
           username = ${COPR_PROJECT%%/*}
           copr_url = https://copr.fedorainfracloud.org
           EOF
-          copr-cli build-package "$COPR_PROJECT" --name triumphant
+          copr-cli build-package "$COPR_PROJECT" --name triumphant --nowait
