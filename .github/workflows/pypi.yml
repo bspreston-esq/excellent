@@ -51,7 +51,7 @@ jobs:
           fi
           echo "mode=$MODE" >> "$GITHUB_OUTPUT"
 
-      - name: Bump version and push to main
+      - name: Bump version and open release PR
         if: steps.detect.outputs.mode == 'bump'
         timeout-minutes: 20
         run: |
@@ -74,18 +74,35 @@ jobs:
               print(f"{maj}.{mi}.{pa + 1}")
           PYEOF
           )
-          if git ls-remote --tags origin "v$NEW" | grep -q .; then
-            echo "Tag v$NEW already exists; skipping"
+          BRANCH="release/v$NEW"
+          if git ls-remote --heads origin "$BRANCH" | grep -q .; then
+            echo "Release branch $BRANCH already exists; skipping"
             exit 0
           fi
-          python3 -m unittest -v
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$BRANCH"
           sed -i -E "s/^version = \".*\"/version = \"$NEW\"/" pyproject.toml
           sed -i -E "s/^Version: .*/Version: $NEW/" triumphant.spec
           git add pyproject.toml triumphant.spec
           git commit -m "chore(release): v$NEW [skip release]"
-          git push origin HEAD:main
+          git push -u origin "$BRANCH"
+          gh pr create --base main --head "$BRANCH" --title "chore(release): v$NEW" --body "Automated version bump to $NEW. [skip release]"
+          PR=$(gh pr view "$BRANCH" --json number -q .number)
+          CI_RUN=""
+          for i in $(seq 1 60); do
+            CI_RUN=$(gh run list --branch "$BRANCH" --event pull_request --limit 1 --json databaseId -q '.[0].databaseId // empty' 2>/dev/null || true)
+            if [ -n "$CI_RUN" ]; then
+              break
+            fi
+            sleep 10
+          done
+          if [ -z "$CI_RUN" ]; then
+            echo "Timed out waiting for CI run on $BRANCH"
+            exit 1
+          fi
+          gh run watch "$CI_RUN" --exit-status --interval 15
+          gh pr merge "$PR" --merge
         env:
           MESSAGE: ${{ steps.msg.outputs.message }}
 
